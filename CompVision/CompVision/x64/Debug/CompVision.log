@@ -1,0 +1,27 @@
+﻿  main.cpp
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(100): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(113): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(114): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(121): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(122): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(145): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(249): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(269): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+c:\users\carey\documents\uni\handeye\compvision\compvision\main.cpp(270): warning C4244: 'argument': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+  CompVision.vcxproj -> C:\Users\carey\Documents\Uni\Handeye\CompVision\x64\Debug\CompVision.exe
