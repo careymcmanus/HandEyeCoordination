@@ -54,22 +54,31 @@ void Stack::determineColour(cv::Mat *frame)
 	thresholdHsv(blueThresh, &threshBlue);
 	thresholdHsv(orangeThresh, &threshOrange);
 	thresholdHsv(purpleThresh, &threshPurple);
+	cv::imshow("bla", threshPurple);
 
-	
-	bool blue = findCircles(&threshBlue, frame);
-	cout << "is blue: " << blue << endl;
-	/*if (findCircles(&threshBlue, frame))
+	bool isBlue = findCircles(&threshBlue, frame);
+	bool isOrange = findCircles(&threshOrange, frame);
+	bool isPurple = findCircles(&threshPurple, frame);
+	if (isBlue && !isOrange && !isPurple)
 	{
+		cout << "Top is Blue" << endl;
 		topColour = BLUE;
 	}
-	if (findCircles(&threshOrange, frame)) 
+	else if (isOrange && !isBlue && !isPurple) 
 	{
+		cout << "Top is Orange" << endl;
 		topColour = ORANGE;
 	}
-	if (findCircles(&threshPurple, frame))
+	else if (isPurple && !isBlue && !isOrange)
 	{
+		cout << "Top is Purple" << endl;
 		topColour = PURPLE;
-	}*/
+	}
+	else
+	{
+		cout << "Top is Nothing" << endl;
+		topColour = NONE;
+	}
 
 }
 
@@ -89,10 +98,9 @@ void Stack::getROI(cv::Mat *frame)
 void Stack::thresholdHsv(cv::Vec6f thresholdValues, cv::Mat *imgThresh)
 {
 	cv::Mat imgWorking;
-	cv::imshow("bla", frameRoiHsv);
-	cv::inRange(frameRoiHsv, cv::Scalar(thresholdValues[0], thresholdValues[1], thresholdValues[2]), cv::Scalar(thresholdValues[1], thresholdValues[2], thresholdValues[3]), imgWorking);
+	cv::imshow("window", frameRoiHsv);
+	cv::inRange(frameRoiHsv, cv::Scalar(thresholdValues[0], thresholdValues[1], thresholdValues[2]), cv::Scalar(thresholdValues[3], thresholdValues[4], thresholdValues[5]), imgWorking);
 
-	cv::GaussianBlur(imgWorking, imgWorking, cv::Size(9, 9), 2, 2);
 
 	cv::morphologyEx(imgWorking, imgWorking, cv::MORPH_OPEN, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
 	cv::morphologyEx(imgWorking, *imgThresh, cv::MORPH_CLOSE, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
@@ -101,7 +109,7 @@ void Stack::thresholdHsv(cv::Vec6f thresholdValues, cv::Mat *imgThresh)
 
 bool Stack::findCircles(cv::Mat *frameThreshold, cv::Mat *frame)
 {
-	float stackArea = radius * radius* 3.1416;
+	float stackArea = (radius-5) * (radius-5)* 3.1416;
 	vector<vector<cv::Point>> cnts;
 	vector<cv::Vec4i> hierachy;
 
@@ -109,13 +117,19 @@ bool Stack::findCircles(cv::Mat *frameThreshold, cv::Mat *frame)
 
 	for (int i = 0; i < cnts.size(); i++)
 	{
+		cv::drawContours(frameROI, cnts, i, cv::Scalar(255, 0, 0));
 		cv::Moments contourMoments = cv::moments(cnts[i]);
 		int cX = contourMoments.m10 / contourMoments.m00;
 		int cY = contourMoments.m01 / contourMoments.m00;
 		float areaDiff = abs(stackArea - contourMoments.m00);
-		if (areaDiff > .4*contourMoments.m00)
+		if (areaDiff > .5*contourMoments.m00)
 		{
 			continue;
+		}
+		for (int j = 0; j < cnts[i].size(); j++)
+		{
+			cnts[i][j].x = cnts[i][j].x + position.x - radius;
+			cnts[i][j].y = cnts[i][j].y + position.y - radius;
 		}
 		//circle(*frame, position, radius, (0, 255, 0), -1);
 		cv::drawContours(*frame, cnts, i, cv::Scalar(0, 255, 0), 2, 8, hierachy);

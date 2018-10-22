@@ -13,7 +13,8 @@ enum Colour
 {
 	BLUE,
 	ORANGE,
-	PURPLE
+	PURPLE,
+	NONE
 };
 
 class Stack
