@@ -36,6 +36,7 @@ class game
 	Colour Colour2 = ORANGE;
 	Colour Colour3 = PURPLE;
 
+public:
 	void changeOrder(Colour first, Colour second, Colour third);
 	
 

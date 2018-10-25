@@ -1,4 +1,5 @@
 #include "game.h"
+#include <windows.h>
 
 void game::changeOrder(Colour first, Colour second, Colour third)
 {
@@ -29,7 +30,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 			stack1->stackCount--;
 			stack2->stackCount++;
 			port::sendSignal(NOMOVE);
-			waitKey(15000);
+			Sleep(1000);
 		}
 		else if (stack1->topColour == Colour3)
 		{
@@ -37,7 +38,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 			stack1->stackCount--;
 			stack3->stackCount++;
 			port::sendSignal(NOMOVE);
-			waitKey(15000);
+			Sleep(1000);
 		}
 		else
 		{
@@ -57,7 +58,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 			else if (stack1->topColour == Colour2 || stack1->topColour == Colour1)
 			{
@@ -65,7 +66,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack2->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 		}
 		else if (stack3->stackCount == 1 && stack3->topColour != NONE)
@@ -76,7 +77,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 			else if (stack1->topColour == Colour1)
 			{
@@ -84,7 +85,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack2->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 		}
 		else
@@ -105,7 +106,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 			else if (stack2->topColour == Colour2)
 			{
@@ -113,7 +114,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack2->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 		}
 		else if (stack2->stackCount == 2 && stack2->topColour != NONE)
@@ -124,7 +125,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack1->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 			
 		}
@@ -145,7 +146,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 			stack2->stackCount--;
 			stack3->stackCount++;
 			port::sendSignal(NOMOVE);
-			waitKey(15000);
+			Sleep(1000);
 		}
 		else if (stack2->stackCount == 2 && stack2->topColour != NONE)
 		{
@@ -155,7 +156,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack2->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 			else
 			{
@@ -163,7 +164,7 @@ int game::getMove(Stack* stack1, Stack* stack2, Stack* stack3)
 				stack2->stackCount--;
 				stack3->stackCount++;
 				port::sendSignal(NOMOVE);
-				waitKey(15000);
+				Sleep(1000);
 			}
 		}
 	}
